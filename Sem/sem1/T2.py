@@ -10,4 +10,3 @@ for i in range(len(numbers)):
     if numbers[i] > max:
         max = numbers[i]
 print('{}, -> {}'.format(numbers, max))
-        
