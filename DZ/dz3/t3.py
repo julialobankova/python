@@ -1,25 +1,23 @@
-from random import sample
+# Задайте список из вещественных чисел. Напишите программу,
+#  которая найдёт разницу между максимальным и минимальным значением дробной части элементов.
+# Пример:
+# - [1.1, 1.2, 3.1, 5, 10.01] => 0.19
 
-def array1(count):
-    if count < 1:
-        return 'Error'
-    list_elements = sample(range(1, count * 3), count)
-    return list_elements
+import random
+def arrayrand(lengthlist):
+    numbers = []
+    for i in range(lengthlist):
+        numbers.append(random.uniform(0, 10))
+    return numbers
 
-def product_num(new_array):  # произведение пар чисел списка
-    res = 0
-    length = len(new_array)
-    res_list = []
-    for i in range(length//2):
-        res = new_array[i] * new_array[length - i - 1]
-        res_list.append(res)
-    if length % 2:
-        res_list.append(new_array[length//2])
-    return res_list
+def diff(array):
+    mylist = []
+    for i in array:
+            mylist.append(round(i%1,2))
+    print(mylist)
+    print(f"-> {max(mylist) - min(mylist)}")
 
-my_list = array1(int(input('Введите длину списка: ')))
-print(my_list)
-if my_list != 'Error':
-    print(product_num(my_list))
-else:
-    print('List creation error')
+
+work_array = arrayrand(5)
+diff(work_array)
+
