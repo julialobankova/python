@@ -10,4 +10,5 @@ print(numbers)
 for i in range(len(numbers)):
     if i % 2:
         sum += numbers[i] 
-print(sum)
+        print('Нечетные элементы {}'.format(numbers[i]))        
+print('Сумма нечетных элементов: {}'.format(sum))
