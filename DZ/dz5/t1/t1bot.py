@@ -5,6 +5,7 @@
 
 from random import randint
 from fun import info
+from fun import botinfo
 candies = 2021
 candy_player1 = 0
 candy_player2 = 0
@@ -22,7 +23,7 @@ else:
     candies = candies - p2
     candy_player2 += p2 
     player = 1
-    print('Ходит бот')
+    botinfo(p2)
     info(candy_player1, candy_player2,candies)
 
 while candies >= 0:
@@ -33,17 +34,17 @@ while candies >= 0:
         info(candy_player1, candy_player2,candies)
         player = 2
         if candies <= 0:
-            print('Вы победили')
+            print('Победил первый игрок')
             break
     else:
         p2 = randint(1, 29)
         candies = candies - p2
         candy_player2 += p2
-        print('Ходит бот')
+        botinfo(p2)
         info(candy_player1, candy_player2,candies)
         player = 1 
         if candies <= 0:
-            print('Вы победили!')
+            print('Победил второй игрок!')
             break
 
 

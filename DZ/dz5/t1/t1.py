@@ -38,7 +38,7 @@ while candies >= 0:
         print('1й игрок {} конфет, 2й игрок {} конфет, {} осталось конфет'.format(candy_player1, candy_player2, candies))
         player = 2
         if candies <= 0:
-            print('Вы победили')
+            print('Победил первый игрок')
             break
     else:
         p2 = int(input('Второй игрок: '))
@@ -47,5 +47,5 @@ while candies >= 0:
         print('1й игрок {} конфет, 2й игрок {} конфет, {} осталось конфет'.format(candy_player1, candy_player2, candies))
         player = 1 
         if candies <= 0:
-            print('Вы победили!')
+            print('Победил второй игрок!')
             break
