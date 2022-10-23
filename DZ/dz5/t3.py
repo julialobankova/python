@@ -17,17 +17,17 @@ for i in content:
 
 
 def decode(fail_txt):
-    decoded_message = ""
+    decoded = ""
     i = 0
     j = 0
     while (i <= len(fail_txt) - 1):
-        run_count = int(fail_txt[i])
-        run_word = fail_txt[i + 1]
-        for j in range(run_count):
-            decoded_message = decoded_message+run_word
+        count = int(fail_txt[i])
+        word = fail_txt[i + 1]
+        for j in range(count):
+            decoded = decoded+word
             j = j + 1
         i = i + 2
-    return decoded_message
+    return decoded
     
 content2  = open_txt('2.txt')
 print(content2)
