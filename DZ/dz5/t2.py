@@ -1,42 +1,61 @@
-from random import randint
+board =list(range(1,10))
+wins_coord = [(1,2,3), (4,5,6), (7,8,9), (1,4,7), (2,5,8), (3,6,9), (1,5,9), (3,5,7)]
 
-def Enter_date(name):
-    x = int(input(f"{name}, введите количество конфет, которое возьмете от 1 до 28: "))
-    while x < 1 or x > 28:
-        x = int(input(f"{name}, введите корректное количество конфет: "))
-    return x
+def darw_board():
+    print('-------------')
+    for i in range(3):
+        print('|', board[0+i*3], '|', board[1+i*3], '|', board[2+i*3],'|')
+    print('-------------')
+darw_board()
+
+def take_input(play):
+    while True:
+        value = input('Куда поставить:  ' + play + '? ')
+        if not(value in '1,2,3,4,5,6,7,8,9'):
+            print('ERROR, введите верное число')
+            continue
+        value = int(value)    
+
+        
+        if str(board[value-1]) in 'XO':
+            print('Занято')
+            continue
+        board[value-1] = play
+        break
 
 
-def printer(name, k, counter, value):
-    print(f"Ход {name}, взято {k}, теперь у {name} {counter}. Осталось на столе {value} конфет.")
-
-player1 = input("Введите имя первого игрока: ")
-player2 = input("Введите имя второго игрока: ")
-value = 2021
-flag = randint(0,2)
-if flag:
-    print(f"Первый ходит {player1}")
-else:
-    print(f"Первый ходит {player2}")
-
-counter1 = 0
-counter2 = 0
-
-while value > 28:
-    if flag:
-        k = Enter_date(player1)
-        counter1 += k
-        value -= k
-        flag = False
-        printer(player1, k, counter1, value)
+def check_win():
+    for each in wins_coord:
+        if(board[each[0]-1]) == (board[each[1]-1]) == (board[each[2]-1]):
+            return board[each[1]-1]
     else:
-        k = Enter_date(player2)
-        counter2 += k
-        value -= k
-        flag = True
-        printer(player2, k, counter2, value)
+        return False
 
-if flag:
-    print(f"Выиграл {player1}")
-else:
-    print(f"Выиграл {player2}")
+def main():
+    counter = 0
+    while True:
+        darw_board()
+        if counter % 2 == 0:
+            take_input('X')
+        else:
+            take_input('O')
+        if counter > 3: 
+            winner = check_win()
+            if winner:
+                darw_board()
+                print(winner, 'Победил!')
+                break
+        counter += 1
+        if counter > 8: 
+            darw_board()
+            print('Ничья')
+            break
+
+
+main()            
+
+
+
+
+
+
