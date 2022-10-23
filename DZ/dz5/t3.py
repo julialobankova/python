@@ -1,40 +1,58 @@
+board =list(range(1,10))
+wins_coord = [(1,2,3), (4,5,6), (7,8,9), (1,4,7), (2,5,8), (3,6,9), (1,5,9), (3,5,7)]
 
-def open_txt(fail_txt):
-    with open(fail_txt) as file:
-        text_import = file.read()
-        return text_import
+def darw_board():
+    print('-------------')
+    for i in range(3):
+        print('|', board[0+i*3], '|', board[1+i*3], '|', board[2+i*3],'|')
+    print('-------------')
+darw_board()
 
-content = open_txt('1.txt')
+def take_input(play):
+    while True:
+        value = input('Куда поставить:  ' + play + '? ')
+        if not(value in '1,2,3,4,5,6,7,8,9'):
+            print('ERROR, введите верное число')
+            continue
+        value = int(value)    
 
-seen = ""
-for i in content:
-    with open("2.txt","a", encoding="utf-8") as f:
-        if i not in seen:
-            f.write(f'{content.count(i)}{i}')
-            seen += i
+        
+        if str(board[value-1]) in 'XO':
+            print('Занято')
+            continue
+        board[value-1] = play
+        break
 
 
+def check_win():
+    for each in wins_coord:
+        if(board[each[0]-1]) == (board[each[1]-1]) == (board[each[2]-1]):
+            return board[each[1]-1]
+    else:
+        return False
+
+def main():
+    counter = 0
+    while True:
+        darw_board()
+        if counter % 2 == 0:
+            take_input('X')
+        else:
+            take_input('O')
+        if counter > 3: 
+            winner = check_win()
+            if winner:
+                darw_board()
+                print(winner, 'Победил!')
+                break
+        counter += 1
+        if counter > 8: 
+            darw_board()
+            print('Ничья')
+            break
 
 
-def decode(fail_txt):
-    decoded = ""
-    i = 0
-    j = 0
-    while (i <= len(fail_txt) - 1):
-        count = int(fail_txt[i])
-        word = fail_txt[i + 1]
-        for j in range(count):
-            decoded = decoded+word
-            j = j + 1
-        i = i + 2
-    return decoded
-    
-content2  = open_txt('2.txt')
-print(content2)
-with open("3.txt","a", encoding="utf-8") as f:
-    f.write(decode(content2))
-print(decode(content2))
-
+main()            
 
 
 
